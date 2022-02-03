@@ -6,6 +6,7 @@ const SHADING = ['solid', 'open','striped']
 export default class Deck {
     constructor(cards = freshDeck()){
         this.cards = cards
+        this.board = []
     }
 
     get numberOfCards(){
@@ -23,6 +24,24 @@ export default class Deck {
             this.cards[randomIndex] = this.cards[i] // change the value of the random index to the value with current index i
             this.cards[i] = newvalue // change the value of the current index i to the value with the random index
         }
+    }
+
+    // Deal the board by adding 12 cards from the deck that should be shuffled before this is called
+    deal() { 
+        for(let i = 0; i < 12; i++) { 
+            this.board.push(this.cards.pop())
+        }
+        // console.log(this.cards)
+        // console.log(this.board)
+        return this.board
+    }
+
+    // After a set is taken off the board, update the board by adding three more cards from the deck 
+    updateBoard() { 
+        for (let i = 0; i < 3; i++) { 
+            this.board.push(this.cards.pop())
+        }
+        return this.board
     }
 
     // Check if the 3 given cards form a set (all features different, all features same)
@@ -62,7 +81,7 @@ class Card {
         this.shape = shape
         this.color = color
         this.shading = shading
-        this.img = "/images/"+number+shape+color+shading+".png"
+        this.img = "./images/"+number+shape+color+shading+".png"
         this.id = NUMBER.indexOf(number).toString() + SHAPE.indexOf(shape).toString() + COLOR.indexOf(color).toString() + SHADING.indexOf(shading).toString()
     }
 }
