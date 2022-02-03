@@ -54,4 +54,18 @@ function findSetCardID(card1, card2) {
     }
     return id
 }
+var img = document.getElementsByTagName("img")
+console.log(img)
+for (let i = 0; i < img.length; i++) { 
+    img[i].onclick = function() { 
+        
+
+        if (img[i].style.border == "3px solid black") { 
+            img[i].style.border = "1px solid black"
+        } else {
+            img[i].style.border = "3px solid black"
+        }
+    } 
+}
+
 set()
