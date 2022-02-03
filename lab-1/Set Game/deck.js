@@ -1,5 +1,5 @@
 const NUMBER = ['one', 'two', 'three']
-const SHAPE = ['dimond', 'circle', 'square']
+const SHAPE = ['diamond', 'oval', 'wave']
 const COLOR = ['red', 'green', 'blue']
 const SHADING = ['solid', 'open','striped']
 
@@ -28,21 +28,30 @@ export default class Deck {
     // Check if the 3 given cards form a set (all features different, all features same)
     isSet(c1, c2, c3){
         let feature = ['number', 'shape', 'color', 'shading']
-        let matched = 0
+        let matched = 0;
         
         for (let i = 0; i<4 ; i++){
-            if ( (c1[feature[i]] == c2[feature[i]] && c2[feature[i]] == c3[feature[i]]) || (c1[feature[i]] != c2[feature[i]] && c2[feature[i]]  != c3[feature[i]] && c3[feature[i]] != c1[feature[i]]))
+            // If feature i is all the same or all different for each card then it is a set, if not then no set 
+            // Generate a counter and if it is 3 at the end then it is a set. 
+            if ( (c1[feature[i]] === c2[feature[i]] && c2[feature[i]] === c3[feature[i]]) || (c1[feature[i]] !== c2[feature[i]] && c2[feature[i]]  !== c3[feature[i]] && c3[feature[i]] !== c1[feature[i]]))
             {
-                matched += 1
+                matched += 1;
             }
-            if (matched == 3){
-                matched = true
-            }
-            else {
-                matched = false
-            }
+      
+        }
+        if (matched == 4) 
+        { 
+            matched = true; 
+        } 
+        else 
+        {
+            matched = false; 
         }
         return matched;
+    }
+
+    findSet(c1, c2) { 
+        
     }
 }
 
@@ -53,6 +62,8 @@ class Card {
         this.shape = shape
         this.color = color
         this.shading = shading
+        this.img = "/images/"+number+shape+color+shading+".png"
+        this.id = NUMBER.indexOf(number).toString + SHAPE.indexOf(shape).toString + COLOR.indexOf(color).toString + SHADING.indexOf(shading).toString
     }
 }
 
