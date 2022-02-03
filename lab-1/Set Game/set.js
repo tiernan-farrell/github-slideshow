@@ -3,9 +3,9 @@ import Deck from "./deck.js"
 
 function set() { 
     let canvas = document.getElementById("Board")
-    canvas.width = innerWidth
-    canvas.height = innerHeight
-    let ctx = canvas.getContext("2d")
+    canvas.height = 0
+    canvas.width = 0
+    var ctx = canvas.getContext("2d")
     // deck holds an array of size 81. each hand has the 4 features
     const deck = new Deck()
     // shuffle the deck.
@@ -20,19 +20,21 @@ function set() {
     console.log(board[1].id)
     var setID = findSetCardID(board[0],board[1])
     console.log(setID)
-    //drawDeck(ctx, board)
+    drawDeck(ctx, board)
 
 }
 
 function drawDeck(ctx, board) { 
- 
     for (let i = 0; i < 12; i++) { 
         var img = document.createElement("img");
         img.src = board[i].img
-        ctx.drawImage(img, 10, 10)
+        document.body.appendChild(img)
+        ctx.drawImage(img,0, 0)
         console.log(ctx)
         console.log(img)
     }
+    
+
 
 }
 // Finds the id of the card that forms a set with the given two cards.
