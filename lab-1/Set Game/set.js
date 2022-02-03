@@ -25,14 +25,16 @@ function set() {
 }
 
 function drawDeck(ctx, board) { 
-    for (let i = 0; i < 12; i++) { 
-        var img = document.createElement("img");
-        img.src = board[i].img
-        document.body.appendChild(img)
-        ctx.drawImage(img,0, 0)
-        console.log(ctx)
-        console.log(img)
+    let i = 0;
+    for (let row = 0; row < 4; row++) { 
+        for (let col = 0; col < 3; col++) {
+            var img = document.getElementById("r" + row.toString() + "c" + col.toString())
+            img.src = board[i].img
+            ctx.drawImage(img,0, 0)
+            i++
+        }
     }
+   
     
 
 

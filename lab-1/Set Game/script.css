@@ -8,16 +8,25 @@ img {
   width: 100px;
   height: 100px;
 }
+
 h1 {
   font-size: 3em;
   color: black;
   text-align: center;
 }
 
-div.Heading {
+div { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.BoardBox { 
+    height: 100%;
+    display: grid;
+}
+div.Heading{
   width: 100%;
   height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
 }
+
