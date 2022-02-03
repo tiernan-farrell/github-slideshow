@@ -63,7 +63,7 @@ class Card {
         this.color = color
         this.shading = shading
         this.img = "/images/"+number+shape+color+shading+".png"
-        this.id = NUMBER.indexOf(number).toString + SHAPE.indexOf(shape).toString + COLOR.indexOf(color).toString + SHADING.indexOf(shading).toString
+        this.id = NUMBER.indexOf(number).toString() + SHAPE.indexOf(shape).toString() + COLOR.indexOf(color).toString() + SHADING.indexOf(shading).toString()
     }
 }
 
