@@ -1,27 +1,36 @@
-#Board { 
-    width: 100;
-    height: 100;
-    background: black
+#Board {
+  width: 100;
+  height: 100;
+  background: wheat;
 }
 
-img { 
-    width: 100px; 
-    height: 100px;
-}
-h1 { 
-    font-size: 3em;
-    color: black;
-    text-align: center;
-        
+img {
+  width: 100px;
+  height: 100px;
 }
 
-div.Heading{ 
-    width: 100%;
-    height: 100px;
+h1 {
+  font-size: 3em;
+  color: black;
+  text-align: center;
+}
+
+div { 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+div.BoardBox { 
+    height: 100%;
+    display: grid;
+}
+div.Heading{
+  width: 100%;
+  height: 100px;
+  
+}
 
+<<<<<<< HEAD
 }
 
 p{
@@ -57,3 +66,5 @@ p3{
     border: 5px solid;
 }
 
+=======
+>>>>>>> 2fdd24ea6a6813d9f9bc56eccb0648b56f058a17
