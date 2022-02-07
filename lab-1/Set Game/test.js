@@ -34,8 +34,8 @@ function test() {
     deck.cards[1].shading = 'empty'
     deck.cards[2].shading = 'striped'
 
-    deck.cards[0].shape = 'dimond'
-    deck.cards[1].shape = 'dimond'
+    deck.cards[0].shape = 'diamond'
+    deck.cards[1].shape = 'diamond'
     deck.cards[2].shape = 'square'
 
 
@@ -52,9 +52,9 @@ function test() {
     deck.cards[4].shading = 'solid'
     deck.cards[5].shading = 'striped'
 
-    deck.cards[3].shape = 'dimond'
-    deck.cards[4].shape = 'dimond'
-    deck.cards[5].shape = 'dimond'
+    deck.cards[3].shape = 'diamond'
+    deck.cards[4].shape = 'diamond'
+    deck.cards[5].shape = 'diamond'
 
 
     // Test for actual set 
@@ -70,9 +70,9 @@ function test() {
     deck.cards[7].shading = 'empty'
     deck.cards[8].shading = 'empty'
 
-    deck.cards[6].shape = 'dimond'
-    deck.cards[7].shape = 'dimond'
-    deck.cards[8].shape = 'dimond'
+    deck.cards[6].shape = 'diamond'
+    deck.cards[7].shape = 'diamond'
+    deck.cards[8].shape = 'diamond'
 
 
     // Test for actual set 
@@ -88,7 +88,7 @@ function test() {
     deck.cards[10].shading = 'solid'
     deck.cards[11].shading = 'striped'
 
-    deck.cards[9].shape = 'dimond'
+    deck.cards[9].shape = 'diamond'
     deck.cards[10].shape = 'square'
     deck.cards[11].shape = 'circle'
 
