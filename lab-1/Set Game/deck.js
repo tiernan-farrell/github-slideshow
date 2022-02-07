@@ -3,6 +3,26 @@ const SHAPE = ['diamond', 'oval', 'wave']
 const COLOR = ['red', 'green', 'blue']
 const SHADING = ['solid', 'open','striped']
 
+var start = 0;
+var stop = null;
+var timer = document.getElementById(“Timer");
+const pad2 = num => num.toString().padStart(2, '0');
+
+var update_timer = setInterval(function() {
+    if (stop === null)  {
+        var now = new Date().getTime();
+        var total_time = now - start_time;
+        var seconds = Math.floor(total_time / 1000);
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var time = pad2(hours) + ":" + pad2(minutes % 60) + ":" + pad2(seconds % 60);
+        timer.innerHTML = time;
+    } else {
+        #choose color and style and position later
+        timer.innerHTML = stop;
+} }, 1000); 
+
+
 export default class Deck {
     constructor(cards = freshDeck()){
         this.cards = cards
