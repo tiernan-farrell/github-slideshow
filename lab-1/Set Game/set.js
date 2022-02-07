@@ -22,6 +22,8 @@ function set() {
     console.log(setID)
     drawDeck(ctx, board)
 
+    
+
 }
 
 function drawDeck(ctx, board) { 
