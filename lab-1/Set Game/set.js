@@ -22,7 +22,7 @@ function set() {
     console.log(setID)
     drawDeck(ctx, board)
 
-    
+    updateScoreBoard(deck)
 
 }
 
@@ -68,6 +68,21 @@ for (let i = 0; i < img.length; i++) {
             img[i].style.border = "3px solid black"
         }
     } 
+}
+
+//TODO: need something to keep track of player scores. 
+//function to show card count, will need to be called everytime card count is changed
+//will increment player score 
+function updateScoreBoard(deck){
+    var cardCount = document.getElementById("numCards");
+    cardCount.innerHTML = "Cards left in deck: " + deck.cards.length;
+
+    var p1 = document.getElementById("p1Score");
+    p1.innerHTML = "Player 1 score: " + 1;
+
+    var p2 = document.getElementById("p2Score");
+    p2.innerHTML = "Player 2 score: " + 1;
+
 }
 
 set()
