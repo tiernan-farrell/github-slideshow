@@ -105,9 +105,7 @@ class Card {
         this.img = "./images/"+number+shape+color+shading+".png"
         this.id = NUMBER.indexOf(number).toString() + SHAPE.indexOf(shape).toString() + COLOR.indexOf(color).toString() + SHADING.indexOf(shading).toString()
     }
-    getImg() { 
-        return this.img
-    }
+    
 }
 
 
