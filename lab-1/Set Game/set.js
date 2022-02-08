@@ -1,5 +1,5 @@
 import Deck from "./deck.js"
-
+import Player from "./player.js"
 
 function set() { 
     let canvas = document.getElementById("Board")
@@ -9,6 +9,9 @@ function set() {
     // deck holds an array of size 81. each hand has the 4 features
     const deck = new Deck()
     var selected = []
+
+    const p1 = new Player("p1")
+    const p2 = new Player("p2")
     // shuffle the deck.
     // debugger
     deck.shuffle()
@@ -16,7 +19,6 @@ function set() {
     //     console.log(deck.cards[i].id)
     // }
     deck.deal()
-
     var img = document.getElementsByTagName("img")
     console.log(img)
     for (let i = 0; i < img.length; i++) { 
@@ -32,10 +34,8 @@ function set() {
 
                     if (selected.length === 3)           {
                         if (deck.isSet(selected[0], selected[1], selected[2])) {
-                            handleSet(selected, deck) 
-                            console.log(deck.board)
+                            handleSet(selected, deck, p1) 
                             drawDeck(ctx, deck.board)
-                            alert("SET FOUND")
                         }
                     }
                 }
@@ -57,7 +57,7 @@ function set() {
 
 }
 // Called whenever a set is made 
-function handleSet(selected, deck) { 
+function handleSet(selected, deck, p) { 
     // pop the set out of the selected array
     for (let i = 0; i  < 3; i++) { 
         const card = selected.pop()
@@ -72,6 +72,19 @@ function handleSet(selected, deck) {
     }
     // replace cards with new deal 
     deck.updateBoard()
+    // Increase score for players
+    updateInfo(p, deck)
+
+}
+
+function updateInfo(p, deck) { 
+    var p1Score = document.getElementById("p1Score")
+    var p2Score = document.getElementById("p2Score")
+    var cardsLeft = document.getElementById("cardsLeft")
+
+    p.incrementScore();
+    p1Score.innerHTML = "Player 1 Score: " + p.score
+    cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 
 }
 function drawDeck(ctx, board) { 
