@@ -29,13 +29,14 @@ function set() {
                 if (selected.length < 3) { 
                     selected.push(card)
                     img[i].style.border = "3px solid black"
-
+    
                     if (selected.length === 3){
                         
                         if (deck.isSet(selected[0], selected[1], selected[2])) {
                             handleSet(selected, deck, p1) 
                             drawDeck(ctx, deck.board)
                             alert("SET FOUND")
+                            updateScoreBoard(deck)
                         }
                         else{
                             alert("Not a Set! Try again")
@@ -127,6 +128,21 @@ function findCard(cards, img) {
             return cards[i]
         }
     }
+}
+
+//TODO: need something to keep track of player scores. 
+//function to show card count, will need to be called everytime card count is changed
+//will increment player score 
+function updateScoreBoard(deck){
+    var cardCount = document.getElementById("numCards");
+    cardCount.innerHTML = "Cards left in deck: " + deck.cards.length;
+
+    var p1 = document.getElementById("p1Score");
+    p1.innerHTML = "Player 1 score: " + 1;
+
+    var p2 = document.getElementById("p2Score");
+    p2.innerHTML = "Player 2 score: " + 1;
+
 }
 
 set()
