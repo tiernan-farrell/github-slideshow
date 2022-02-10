@@ -1,102 +1,141 @@
+import ComputerPlayer from "./computerPlayer.js"
 import Deck from "./deck.js"
 import Player from "./player.js"
 
-function set() { 
-    let canvas = document.getElementById("Board")
-    canvas.height = 0
-    canvas.width = 0
-    var ctx = canvas.getContext("2d")
-    // deck holds an array of size 81. each hand has the 4 features
-    const deck = new Deck()
-    var selected = []
+const canvas = document.getElementById("Board")
+canvas.height = 0
+canvas.width = 0
+var ctx = canvas.getContext("2d")
+// deck holds an array of size 81. each hand has the 4 features
+const deck = new Deck()
+var selected = []
 
-    const p1 = new Player("p1")
-    const p2 = new Player("p2")
-
-    deck.shuffle()
-    deck.deal()
-    drawDeck(ctx, deck.board)
-
-    var img = document.getElementsByTagName("img")
-    for (let i = 0; i < img.length; i++) { 
-        img[i].onclick = function() { 
-            const card = findCard(deck.board, img[i])
-            
-            if(selected.includes(card)) { 
-                selected.pop(card)
-                img[i].style.border = "1px solid black"
+const p1 = new Player("p1")
+const cpu = new ComputerPlayer("cpu")
+// shuffle the deck
+// debugger
+deck.shuffle()
+deck.deal();
+setBorder()
+addImagesEventListener("click", "img", e => { 
+    const card = findCard(deck.board, e.target)
+    // If the card needs to be removed
+    console.log(selected)
+    if (selected.includes(card))  { 
+        selected = selected.filter(ele => ele!=card)
+        const img = e.target
+        console.log(selected)
+        img.style.border = "2px solid black"
+        // If the card needs to be added 
+    } else { 
+        if (selected.length < 3) { 
+            e.target.style.border = "5px solid green"
+            // add card 
+            selected.push(card)
+            console.log(selected)
+        } 
+        // Check for set 
+        if (selected.length === 3) { 
+            if (deck.isSet(selected[0], selected[1], selected[2])) { 
+                setFound(p1)
             } else { 
-                if (selected.length < 3) { 
-                    selected.push(card)
-                    img[i].style.border = "3px solid black"
-    
-                    if (selected.length === 3){
-                        
-                        if (deck.isSet(selected[0], selected[1], selected[2])) {
-                            handleSet(selected, deck, p1) 
-                            drawDeck(ctx, deck.board)
-                            alert("SET FOUND")
-                            updateScoreBoard(deck)
-                        }
-                        else{
-                            alert("Not a Set! Try again")
-                            selected = []
-                            for (let i = 0; i < img.length; i++){
-                                img[i].style.border = "1px solid black"
-                            }
-                            
-                        }
-                    }
-                }
+                alert("Not a Set! Try again")
+                selected = []
+                setBorder()
             }
-                
-            
-        }
-            
+        } 
+    
     }
+    
+     
+})
+
+function addImagesEventListener(type, selector, callback) { 
+    document.addEventListener(type, e => { 
+        if(e.target.matches(selector)) callback(e)
+    })
 }
 
+
+var intervalmove = setInterval(function computerMove() {
+    var set = cpu.findSet(deck.board)
+    console.log(set)
+    if (set != -1) { 
+        // for (let i = 0; i < 3; i++) { 
+        //     const card = getCardById(set[i])
+        //     selected.push(card)
+        // }
+        // console.log(deck.board)
+        // setFound(cpu)
+        // console.log(deck.board)
+    } else { 
+        selected = []
+        deck.redeal()
+        drawDeck(ctx)
+        alert(
+            "REDEAL, NO POSSIBLE SETS"
+        )
+        
+    }
+
+}, 20000)
+   
+
+drawDeck(ctx)
 // Called whenever a set is made 
-function handleSet(selected, deck, p) {     
- // pop the set out of the selected array
-     for (let i = 0; i  < 3; i++) { 
-        const card = selected.pop()
-        deck.release(card)
-        console.log(card)
+function wait(secs, p) { 
+    setTimeout(() => {
+        // pop the set out of the selected array
+        for (let i = 0; i  < 3; i++) { 
+            var poppedCard = selected.pop()
+            deck.release(poppedCard) 
+        } 
+        // Change all images boreders back to unselected
+        setBorder()
+        // replace cards with new deal 
+        deck.updateBoard()
+        // Increase score for players
+        updateInfo(p)
+        drawDeck(ctx) }, secs*1000)
+}
 
-    } 
-
-    // Change all images boreders back to unselected
-    let img = document.getElementsByTagName("img")
-    for (let j = 0; j <img.length; j++)  { 
-        img[j].style.border = "1px solid black"
+function setFound(p) { 
+    console.log(selected)
+    for(let j = 0; j < selected.length; j++) {
+        document.getElementById(selected[j].boardId).style.animationPlayState= "running"
+    }
+    wait(2, p)
+    for(let j = 0; j < selected.length; j++) {
+        document.getElementById(selected[j].boardId).style.animationPlayState= "paused"
     }
 
-    // replace cards with new deal 
-    deck.updateBoard()
-    // Increase score for players
-    updateInfo(p, deck)
 
 }
 
-function updateInfo(p, deck) { 
+function updateInfo(p) { 
     var p1Score = document.getElementById("p1Score")
     var p2Score = document.getElementById("p2Score")
     var cardsLeft = document.getElementById("cardsLeft")
 
     p.incrementScore()
-    p1Score.innerHTML = "Player 1 Score: " + p.score
+    if(p === p1) { 
+        p1Score.innerHTML = "Player 1 Score: " + p.score
+
+    } else  {
+        p2Score.innerHTML = "Player 2 Score: " + p.score
+    }
+
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 
 }
 
-function drawDeck(ctx, board) { 
+function drawDeck(ctx) { 
     let i = 0;
-    console.log(board)
     for (let row = 0; row < 4; row++) { 
         for (let col = 0; col < 3; col++) {
-            var img = document.getElementById("r" + row.toString() + "c" + col.toString())
-            img.src = board[i].img
+            deck.board[i].boardId = "r" + row.toString() + "c" + col.toString()
+            const img = document.getElementById(deck.board[i].boardId)
+            img.src = deck.board[i].img 
             ctx.drawImage(img,0, 0)
             i++
         }
@@ -120,10 +159,17 @@ function findSetCardID(card1, card2) {
     return id
 }
 
+function setBorder () { 
+    const img = document.getElementsByTagName("img")
+        for (let j = 0; j <img.length; j++)  { 
+            img[j].style.border = "2px solid black"
+        }
+}
+
 function findCard(cards, img) { 
-    for(let i = 0; i < 69; i++) { 
+    for(let i = 0; i < deck.cards.length; i++) { 
         let split = img.src.split("/")
-        let name = "./images/" + split[4]
+        let name = "./images/" + split[6]
         if (cards[i].img === name) { 
             return cards[i]
         }
@@ -144,5 +190,3 @@ function updateScoreBoard(deck){
     p2.innerHTML = "Player 2 score: " + 1;
 
 }
-
-set()

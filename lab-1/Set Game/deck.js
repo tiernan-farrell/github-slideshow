@@ -48,6 +48,14 @@ export default class Deck {
     release(card) { 
         this.board = this.board.filter(ele => ele!=card)
     }
+
+    redeal() { 
+        this.cards = this.cards.concat(this.board)
+        this.board =[]
+        this.shuffle()
+        this.deal()
+    }
+    
     // Deal the board by adding 12 cards from the deck that should be shuffled before this is called
     deal() { 
         for(let i = 0; i < 12; i++) { 

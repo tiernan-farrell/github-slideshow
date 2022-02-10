@@ -12,13 +12,25 @@ img:hover {
   margin: 2px;
 }
 img {
-width: 120px;
-height: 100px;
-cursor: pointer;
-border: 1px solid black;
-margin: 10px;
+  width: 120px;
+  height: 100px;
+  cursor: pointer;
+  border: 2px solid black;
+  margin: 10px;
+  animation-name: set;
+  animation-duration: 2s;
+  animation-play-state: paused;
+  
+
 }
 
+@keyframes set {
+  0% { border-color:  black; transform: scale(1);}
+  25% { border-color:  black; transform: scale(1.1);}
+  50% { border-color:  black; transform: scale(1.3);}
+  75% { border-color:  black; transform: scale(1.1);}
+  100% { border-color:  black; transform: scale(1);}
+}
 
 h1 {
   font-size: 3em;
