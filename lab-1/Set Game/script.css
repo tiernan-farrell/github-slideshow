@@ -4,7 +4,10 @@
   background: wheat;
 }
 body { 
-  background-color: gray;
+  background-image: url(.images/backdrop.png);
+  height: auto;
+  background-size: cover;
+  background-attachment: fixed;
 }
 img:hover { 
   width: 144px;
@@ -43,14 +46,21 @@ div {
     justify-content: center;
     align-items: center;
 }
+
 div.BoardBox { 
     height: 100%;
     display: grid;
+    background: rgba(255, 255, 255,1);
+    width: 50%;
+    padding: 40px;
+    margin: 100px auto;
 }
+
 div.Heading{
   width: 100%;
   height: 100px;
-  
+  background-image: url(./images/set_cards.png);
+  height: auto;
 }
 
 p, p1, p2, p3{
