@@ -15,7 +15,8 @@ var update_timer = setInterval(function() {
         var hours = Math.floor(minutes / 60)
         var display_min = (minutes % 60).toString().padStart(2, '0')
         var display_sec = (seconds % 60).toString().padStart(2, '0')
-        var time = display_min + ":" + display_sec
+        var display_hrs = (hours).toString().padStart(2, '0')
+        var time = display_hrs + ":" + display_min + ":" + display_sec
         timer.innerHTML = time
     } else {
         //add style, location, color choices
