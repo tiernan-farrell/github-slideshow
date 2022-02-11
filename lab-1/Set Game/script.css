@@ -4,7 +4,7 @@
   background: wheat;
 }
 body { 
-  background-image: url(.images/backdrop.png);
+  background-image: url(./images/backdrop.png);
   height: auto;
   background-size: cover;
   background-attachment: fixed;
