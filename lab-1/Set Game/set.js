@@ -206,10 +206,6 @@ function checkWinner(p1, p2){
 //pass in the player.name of the winner
 function endGame(name){
     //window.open("endGamePopup.html", "popup", "width=100,height=100")
-    alert("Game over. Winner is "+ name +". Refresh the page to play again!")
+    alert("Game over. Winner is "+ name + ". Refresh the page to play again!")
 }
-
-
-
-
 
