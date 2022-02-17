@@ -9,6 +9,7 @@ var ctx = canvas.getContext("2d")
 // deck holds an array of size 81. each hand has the 4 features
 const deck = new Deck()
 var selected = []
+var timeSetFound
 
 const p1 = new Player("p1")
 const cpu = new ComputerPlayer("cpu")
@@ -39,6 +40,7 @@ addImagesEventListener("click", "img", e => {
         if (selected.length === 3) { 
             if (deck.isSet(selected[0], selected[1], selected[2])) { 
                 setFound(p1)
+                timeSetFound = document.getElementById("Timer").innerHTML
             } else { 
                 alert("Not a Set! Try again")
                 selected = []
@@ -117,6 +119,7 @@ function updateInfo(p) {
     var p1Score = document.getElementById("p1Score")
     var p2Score = document.getElementById("p2Score")
     var cardsLeft = document.getElementById("cardsLeft")
+    var p1time = document.getElementById("p1time")
 
     p.incrementScore()
     if(p === p1) { 
@@ -125,8 +128,12 @@ function updateInfo(p) {
     } else  {
         p2Score.innerHTML = "Player 2 Score: " + p.score
     }
-
+    
+    p1time.innerHTML += "<li>" + timeSetFound + "</li>"
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
+
+
+
 
 }
 

@@ -12,11 +12,11 @@ var update_timer = setInterval(function() {
         var elapsed_time = current - start
         var seconds = Math.floor(elapsed_time / 1000)
         var minutes = Math.floor(seconds / 60)
-        var hours = Math.floor(minutes / 60)
+
         var display_min = (minutes % 60).toString().padStart(2, '0')
         var display_sec = (seconds % 60).toString().padStart(2, '0')
-        var display_hrs = (hours).toString().padStart(2, '0')
-        var time = display_hrs + ":" + display_min + ":" + display_sec
+        
+        var time =  display_min + ":" + display_sec
         timer.innerHTML = time
     } else {
         //add style, location, color choices

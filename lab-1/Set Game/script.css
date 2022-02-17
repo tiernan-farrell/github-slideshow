@@ -22,7 +22,7 @@ img {
   margin: 10px;
   animation-name: set;
   animation-duration: 2s;
-  animation-play-state: paused;
+  /*animation-play-state: */
   
 
 }
@@ -61,6 +61,20 @@ div.Heading{
   height: 100px;
   background-image: url(./images/set_cards.png);
   height: auto;
+}
+ul{
+  font-size: 1.4em;
+  color: black;
+  display:list-item;  
+  text-align: left;
+  padding-left: 30px;
+  
+}
+li{
+  font-size: 1em;
+  list-style:decimal;
+  padding-left: 15px;
+  padding-top: 5px;
 }
 
 p, p1, p2, p3{
