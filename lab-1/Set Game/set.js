@@ -14,6 +14,7 @@ const p1 = new Player("p1")
 const cpu = new ComputerPlayer("cpu")
 // shuffle the deck
 // debugger
+
 deck.shuffle()
 deck.deal();
 setBorder()
@@ -190,3 +191,21 @@ function updateScoreBoard(deck){
     p2.innerHTML = "Player 2 score: " + 1;
 
 }
+
+//function to check the winner of the game
+//call to pass into endGame
+function checkWinner(p1, p2){
+    if(p1.score>p2.score){
+        return p1.name
+    }
+        return p2.name
+    
+}
+
+//call this function if the amount of cards is 0, will notify of completed game
+//pass in the player.name of the winner
+function endGame(name){
+    //window.open("endGamePopup.html", "popup", "width=100,height=100")
+    alert("Game over. Winner is "+ name + ". Refresh the page to play again!")
+}
+
