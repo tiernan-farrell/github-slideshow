@@ -168,9 +168,10 @@ function setBorder () {
 }
 
 function findCard(cards, img) { 
+
     for(let i = 0; i < deck.cards.length; i++) { 
         let split = img.src.split("/")
-        let name = "./images/" + split[6]
+        let name = "./images/" + split[4]
         if (cards[i].img === name) { 
             return cards[i]
         }
