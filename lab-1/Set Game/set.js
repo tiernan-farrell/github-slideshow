@@ -217,3 +217,25 @@ function endGame(name){
     alert("Game over. Winner is "+ name + ". Refresh the page to play again!")
 }
 
+
+// Dropdown when the player clicks on the "Time Set Found" 
+document.getElementById("reportbtn").onclick = function() {
+    reportCard()
+}
+function reportCard() {
+    document.getElementById("p1time").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.reportbtn')) {
+      var report = document.getElementsByClassName("report-content");
+      var i;
+      for (i = 0; i < report.length; i++) {
+        var openDropdown = report[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
