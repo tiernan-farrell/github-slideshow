@@ -5,14 +5,16 @@ import Player from "./player.js"
 const canvas = document.getElementById("Board")
 canvas.height = 0
 canvas.width = 0
-var ctx = canvas.getContext("2d")
 // deck holds an array of size 81. each hand has the 4 features
 const deck = new Deck()
-var selected = []
-var timeSetFound
-
 const p1 = new Player("p1")
 const cpu = new ComputerPlayer("cpu")
+const TIMESCALE = 10
+
+var ctx = canvas.getContext("2d")
+var selected = []
+var timeSetFound = 0
+var setHistory 
 // shuffle the deck
 // debugger
 
@@ -26,7 +28,7 @@ addImagesEventListener("click", "img", e => {
     if (selected.includes(card))  { 
         selected = selected.filter(ele => ele!=card)
         const img = e.target
-        console.log(selected)
+        //console.log(selected)
         img.style.border = "2px solid black"
         // If the card needs to be added 
     } else { 
@@ -40,7 +42,8 @@ addImagesEventListener("click", "img", e => {
         if (selected.length === 3) { 
             if (deck.isSet(selected[0], selected[1], selected[2])) { 
                 setFound(p1)
-                timeSetFound = document.getElementById("Timer").innerHTML
+                setHistory = document.getElementById("Timer").innerHTML
+                timeSetFound = getTime()
             } else { 
                 alert("Not a Set! Try again")
                 selected = []
@@ -62,16 +65,9 @@ function addImagesEventListener(type, selector, callback) {
 
 var intervalmove = setInterval(function computerMove() {
     var set = cpu.findSet(deck.board)
-    console.log(set)
-    if (set != -1) { 
-        // for (let i = 0; i < 3; i++) { 
-        //     const card = getCardById(set[i])
-        //     selected.push(card)
-        // }
-        // console.log(deck.board)
-        // setFound(cpu)
-        // console.log(deck.board)
-    } else { 
+
+    // First check for no sets and redeal 
+    if (set == -1) { 
         selected = []
         deck.redeal()
         drawDeck(ctx)
@@ -79,9 +75,28 @@ var intervalmove = setInterval(function computerMove() {
             "REDEAL, NO POSSIBLE SETS"
         )
         
+    } else { 
+        console.log(timeSetFound)
+        // Check for computer move 
+
+        var time = getTime()
+        var timeGoal = cpu.level*TIMESCALE+timeSetFound
+        if(time > timeGoal) { 
+            // update timeSetFound 
+            timeSetFound += cpu.level*TIMESCALE
+            //make move 
+            selected = []
+            for (let i = 0; i < 3; i++) { 
+                const card = getCardById(set[i])
+                selected.push(card)
+            }
+            //console.log(deck.board)
+            setFound(cpu)
+            //console.log(deck.board)
+        }   
     }
 
-}, 20000)
+}, 1000)
    
 
 drawDeck(ctx)
@@ -103,13 +118,15 @@ function wait(secs, p) {
 }
 
 function setFound(p) { 
-    console.log(selected)
+    //console.log(selected)
     for(let j = 0; j < selected.length; j++) {
-        document.getElementById(selected[j].boardId).style.animationPlayState= "running"
+        var card = document.getElementById(selected[j].boardId)
+        if (card) card.style.animationPlayState= "running"
     }
     wait(2, p)
     for(let j = 0; j < selected.length; j++) {
-        document.getElementById(selected[j].boardId).style.animationPlayState= "paused"
+        var card = document.getElementById(selected[j].boardId)
+        if (card) card.style.animationPlayState= "paused"
     }
 
 
@@ -129,7 +146,7 @@ function updateInfo(p) {
         p2Score.innerHTML = "Player 2 Score: " + p.score
     }
     
-    p1time.innerHTML += "<li>" + timeSetFound + "</li>"
+    p1time.innerHTML += "<li>" + setHistory + "</li>"
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 
 
@@ -150,22 +167,19 @@ function drawDeck(ctx) {
     }
 
 }
-
-// Finds the id of the card that forms a set with the given two cards.
-function findSetCardID(card1, card2) { 
-    let id = ''
-    for (let i = 0; i < 4; i++) { 
-        if (card1.id.charAt(i) == card2.id.charAt(i)) { 
-            id += card1.id.charAt(i);
-        } else { 
-            let nums = "012"
-            nums = nums.replace(card1.id.charAt(i), "")
-            nums = nums.replace(card2.id.charAt(i), "")
-            id += nums
-        }
-    }
-    return id
+// Gets the number of seconds that have passed since page has reloaded 
+function getTime () { 
+    var rtime = 0
+    // Get timer html 
+    var time = document.getElementById("Timer").innerHTML
+    var split = time.split(":")
+    var t1 = parseInt(split[0])
+    var t2 = parseInt(split[1])
+    // multiply minutes by 60 
+    rtime = 60*t1 + t2
+    return rtime
 }
+
 
 function setBorder () { 
     const img = document.getElementsByTagName("img")
@@ -178,7 +192,9 @@ function findCard(cards, img) {
 
     for(let i = 0; i < deck.cards.length; i++) { 
         let split = img.src.split("/")
-        let name = "./images/" + split[4]
+        console.log(split)
+        let name = "./images/" + split[5]
+        console.log(name)
         if (cards[i].img === name) { 
             return cards[i]
         }
@@ -210,6 +226,15 @@ function checkWinner(p1, p2){
     
 }
 
+// Gets card on board from its id 
+function getCardById(id) { 
+    for (let i = 0; i < deck.board.length; i++) { 
+        if (deck.board[i].id === id) { 
+            return deck.board[i]
+        }
+    }
+}
+
 //call this function if the amount of cards is 0, will notify of completed game
 //pass in the player.name of the winner
 function endGame(name){
@@ -217,6 +242,16 @@ function endGame(name){
     alert("Game over. Winner is "+ name + ". Refresh the page to play again!")
 }
 
+
+
+// Set the level buttons to change the difficulty of cpu level 
+var levels = document.getElementsByClassName("level")
+for (let i = 0; i < levels.length; i++) { 
+    levels[i].onclick = (e) => { 
+        let level = parseInt(e.target.innerHTML.split(" ")[1])
+        cpu.level = level
+    }
+}
 
 // Dropdown when the player clicks on the "Time Set Found" 
 document.getElementById("reportbtn").onclick = function() {

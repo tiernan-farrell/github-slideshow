@@ -1,8 +1,9 @@
 
 export default class ComputerPlayer{ 
-    constructor(name)  {
+    constructor(name, level=1)  {
         this.name = name
         this.score = 0
+        this.level = level
     }
 
     incrementScore() { 
