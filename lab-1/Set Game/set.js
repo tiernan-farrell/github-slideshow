@@ -15,8 +15,7 @@ var ctx = canvas.getContext("2d")
 var selected = []
 var timeSetFound = 0
 var setHistory 
-// shuffle the deck
-// debugger
+var hints = []
 
 deck.shuffle()
 deck.deal();
@@ -41,6 +40,7 @@ addImagesEventListener("click", "img", e => {
         // Check for set 
         if (selected.length === 3) { 
             if (deck.isSet(selected[0], selected[1], selected[2])) { 
+                hints = []
                 setFound(p1)
                 setHistory = document.getElementById("Timer").innerHTML
                 timeSetFound = getTime()
@@ -51,9 +51,7 @@ addImagesEventListener("click", "img", e => {
             }
         } 
     
-    }
-    
-     
+    }   
 })
 
 function addImagesEventListener(type, selector, callback) { 
@@ -62,9 +60,46 @@ function addImagesEventListener(type, selector, callback) {
     })
 }
 
-
 var intervalmove = setInterval(function computerMove() {
     var set = cpu.findSet(deck.board)
+
+    for(let j = 0; j < 2; j++){
+        hint(set[j])
+    }
+
+    function hint (target){
+        deck.board.forEach (function(card){
+            if (target == card.id){
+                var cardImg = document.getElementsByClassName("row")
+                for (let i = 0; i < 4; i++){
+                    for (let j = 0; j < 3; j++){
+                    let imgTag = cardImg[i].children[j].src
+
+                    let split = imgTag.split("/")
+                    let imgSrc = "./images/" + split[4]
+ 
+                        if(imgSrc == card.img){
+                          if(hints.length <= 2){
+                            hints.push(cardImg[i].children[j])
+                          }
+                          else{
+                              hints = []
+                              hints.push(cardImg[i].children[j])
+                          }
+                            
+                        }
+                    }
+                }   
+            }
+        })
+    }
+
+    document.getElementById("hint").onclick = function (){
+        hints.forEach(function(hint){
+            hint.style.border = "6px solid red"
+        })
+        
+    }
 
     // First check for no sets and redeal 
     if (set == -1) { 
@@ -74,6 +109,7 @@ var intervalmove = setInterval(function computerMove() {
         alert(
             "REDEAL, NO POSSIBLE SETS"
         )
+        hints = []
         
     } else { 
         console.log(timeSetFound)
@@ -94,6 +130,7 @@ var intervalmove = setInterval(function computerMove() {
             setFound(cpu)
             //console.log(deck.board)
         }   
+        
     }
 
 }, 1000)
@@ -128,8 +165,6 @@ function setFound(p) {
         var card = document.getElementById(selected[j].boardId)
         if (card) card.style.animationPlayState= "paused"
     }
-
-
 }
 
 function updateInfo(p) { 
@@ -148,10 +183,6 @@ function updateInfo(p) {
     
     p1time.innerHTML += "<li>" + setHistory + "</li>"
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
-
-
-
-
 }
 
 function drawDeck(ctx) { 
@@ -167,6 +198,7 @@ function drawDeck(ctx) {
     }
 
 }
+
 // Gets the number of seconds that have passed since page has reloaded 
 function getTime () { 
     var rtime = 0
@@ -193,7 +225,7 @@ function findCard(cards, img) {
     for(let i = 0; i < deck.cards.length; i++) { 
         let split = img.src.split("/")
         console.log(split)
-        let name = "./images/" + split[5]
+        let name = "./images/" + split[4]
         console.log(name)
         if (cards[i].img === name) { 
             return cards[i]
@@ -201,7 +233,6 @@ function findCard(cards, img) {
     }
 }
 
-//TODO: need something to keep track of player scores. 
 //function to show card count, will need to be called everytime card count is changed
 //will increment player score 
 function updateScoreBoard(deck){
@@ -255,17 +286,15 @@ for (let i = 0; i < levels.length; i++) {
 
 // Dropdown when the player clicks on the "Time Set Found" 
 document.getElementById("reportbtn").onclick = function() {
-    reportCard()
-}
-function reportCard() {
     document.getElementById("p1time").classList.toggle("show");
-  }
+}
+
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(event) {
     if (!event.target.matches('.reportbtn')) {
-      var report = document.getElementsByClassName("report-content");
-      var i;
-      for (i = 0; i < report.length; i++) {
+      var report = document.getElementsByClassName("report-content")
+      
+      for (let i = 0; i < report.length; i++) {
         var openDropdown = report[i];
         if (openDropdown.classList.contains('show')) {
           openDropdown.classList.remove('show');
