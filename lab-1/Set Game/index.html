@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="script.css" type="text/css" media="screen" />
 
@@ -10,20 +11,22 @@
     <title>Set Card Game</title>
 
     <script src="set.js" type="module"></script>
-    
+
 </head>
+
 <body>
+
     <div class="Heading">
         <h1>Play Set!</h1>
     </div>
-    <canvas id="Board"></canvas> 
-    
+    <canvas id="Board"></canvas>
+
     <p id="p1Score">Player 1 Score: 0</p>
     <p1 id="p2Score">Player 2 score: 0</p1>
     <p2 id="cardsLeft">Cards left: 69</p2>
     <p3 id="Timer">Timer: 00:00 </p3>
 
-    <p4 class="cpu">Difficulty: 
+    <p4 class="cpu">Difficulty:
         <button class="level">Level 1</button>
         <button class="level">Level 2</button>
         <button class="level">Level 3</button>
@@ -31,35 +34,56 @@
 
 
     <div class="report">
-        <button id ="reportbtn" class="reportbtn">Set History</button>
+        <button id="reportbtn" class="reportbtn">Set History</button>
         <ul id="p1time" class="report-content">
         </ul>
     </div>
 
     <button id="hint" class="hintbtn">Hint!</button>
-    
-    <div class="BoardBox">
-        <div class="row">
-            <img id="r0c0">
-            <img id="r0c1">
-            <img id="r0c2">
+
+
+    <div class="container">
+        <div class="Rules">
+            <br>
+            <br> Choose your level of difficulty.
+            <br> This game is a race.
+            <br> Who can find the most sets?<br>
+            <br> Click on 3 cards that satisfy 4 rules. <br>
+            <br> Color: all the same or all different
+            <br> Shape: all the same or all different
+            <br> Shading: all the same or all different
+            <br> Quantity: all the same or all different<br>
+            <br> We are not taking turns.
+            <br> Find as many sets as you can. <br>
+            <br> Are you ready, player 1?
         </div>
-        <div class="row">
-            <img id="r1c0">
-            <img id="r1c1">
-            <img id="r1c2">
-        </div>
-        <div class="row">
-            <img id="r2c0">
-            <img id="r2c1">
-            <img id="r2c2">
-        </div>
-        <div class="row">
-            <img id="r3c0">
-            <img id="r3c1">
-            <img id="r3c2">  
+
+
+        <div class="BoardBox">
+            <div class="row">
+                <img id="r0c0">
+                <img id="r0c1">
+                <img id="r0c2">
+            </div>
+            <div class="row">
+                <img id="r1c0">
+                <img id="r1c1">
+                <img id="r1c2">
+            </div>
+            <div class="row">
+                <img id="r2c0">
+                <img id="r2c1">
+                <img id="r2c2">
+            </div>
+            <div class="row">
+                <img id="r3c0">
+                <img id="r3c1">
+                <img id="r3c2">
+            </div>
         </div>
 
     </div>
+
 </body>
+
 </html>
