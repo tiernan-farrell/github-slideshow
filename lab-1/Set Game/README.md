@@ -83,7 +83,7 @@ https://www.youtube.com/watch?v=I2PlgSGT2Ls
 
 *Open cloned github repository*
 
-Clone this github repository using any method you choose. You can clone the repository within github and enter your github account information when prompted. 
+Clone this github repository using any method you choose. You can clone the repository within VS Code and enter your github account information when prompted. 
 
 
 <img width="468" alt="image" src="https://user-images.githubusercontent.com/76539970/154859247-825847af-c4a9-4ce1-b7e4-8a60347e87e3.png">
