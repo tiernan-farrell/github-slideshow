@@ -16,6 +16,7 @@ var selected = []
 var timeSetFound = 0
 var setHistory 
 var hints = []
+var score = ""
 
 deck.shuffle()
 deck.deal();
@@ -43,7 +44,9 @@ addImagesEventListener("click", "img", e => {
                 hints = []
                 setFound(p1)
                 setHistory = document.getElementById("Timer").innerHTML
+                score = "player1"
                 timeSetFound = getTime()
+                console.log("line 47 timeSetFound:", timeSetFound)
             } else { 
                 alert("Not a Set! Try again")
                 selected = []
@@ -120,7 +123,8 @@ var intervalmove = setInterval(function computerMove() {
         if(time > timeGoal) { 
             // update timeSetFound 
             timeSetFound += cpu.level*TIMESCALE
-            //make move 
+            console.log("line 123 timeSetFound:", timeSetFound)
+            //make move
             selected = []
             for (let i = 0; i < 3; i++) { 
                 const card = getCardById(set[i])
@@ -129,6 +133,8 @@ var intervalmove = setInterval(function computerMove() {
             //console.log(deck.board)
             setFound(cpu)
             //console.log(deck.board)
+            setHistory = document.getElementById("Timer").innerHTML
+            score = "cpu"
         }   
         
     }
@@ -176,12 +182,17 @@ function updateInfo(p) {
     p.incrementScore()
     if(p === p1) { 
         p1Score.innerHTML = "Player 1 Score: " + p.score
+        p1Score.style.animation = "scoreSize 2s infinite"
+        p2Score.style.animation = ""
 
     } else  {
         p2Score.innerHTML = "Player 2 Score: " + p.score
+        p2Score.style.animation = "scoreSize 2s infinite"
+        p1Score.style.animation = ""
     }
     
-    p1time.innerHTML += "<li>" + setHistory + "</li>"
+    console.log("line 186 setHistory:", setHistory)
+    p1time.innerHTML += "<li>" + score + ": " + setHistory + "</li>"
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 }
 
@@ -293,7 +304,7 @@ document.getElementById("reportbtn").onclick = function() {
   window.onclick = function(event) {
     if (!event.target.matches('.reportbtn')) {
       var report = document.getElementsByClassName("report-content")
-      
+      console.log("report:",report)
       for (let i = 0; i < report.length; i++) {
         var openDropdown = report[i];
         if (openDropdown.classList.contains('show')) {
