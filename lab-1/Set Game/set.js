@@ -123,10 +123,10 @@ var intervalmove = setInterval(function computerMove() {
     var time = getTime()
     console.log(cpu.level)
     var timeGoal = cpu.level*TIMESCALE+timeSetFound
+    console.log(timeGoal)
     if(time > timeGoal) { 
         // update timeSetFound 
         timeSetFound += cpu.level*TIMESCALE
-        console.log("line 123 timeSetFound:", timeSetFound)
         //make move
         selected = []
         for (let i = 0; i < 3; i++) { 
@@ -162,7 +162,6 @@ function wait(secs, p) {
 }
 
 function setFound(p) { 
-    //console.log(selected)
     for(let j = 0; j < selected.length; j++) {
         var card = document.getElementById(selected[j].boardId)
         if (card) card.style.animationPlayState= "running"
@@ -192,7 +191,6 @@ function updateInfo(p) {
         p1Score.style.animation = ""
     }
     
-    console.log("line 186 setHistory:", setHistory)
     p1time.innerHTML += "<li>" + score + ": " + setHistory + "</li>"
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 }
@@ -289,6 +287,8 @@ function endGame(name){
 
 // Set the level buttons to change the difficulty of cpu level 
 var levels = document.getElementsByClassName("level")
+// Set easy to grey color as it is default selection to start 
+levels[0].style.background = "grey"
 for (let i = 0; i < levels.length; i++) { 
     levels[i].onclick = (e) => { 
         let level = e.target.innerHTML
@@ -298,6 +298,10 @@ for (let i = 0; i < levels.length; i++) {
             cpu.level = 2
         } else { 
             cpu.level = 1
+        }
+        e.target.style.background = "grey"
+        for (let j = 0; j < levels.length; j++) { 
+            if(j !== i) levels[j].style.background =  "#a80303"
         }
     }
 }
@@ -311,7 +315,6 @@ document.getElementById("reportbtn").onclick = function() {
   window.onclick = function(event) {
     if (!event.target.matches('.reportbtn')) {
       var report = document.getElementsByClassName("report-content")
-      console.log("report:",report)
       for (let i = 0; i < report.length; i++) {
         var openDropdown = report[i];
         if (openDropdown.classList.contains('show')) {

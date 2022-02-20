@@ -62,8 +62,6 @@ export default class Deck {
         for(let i = 0; i < 12; i++) { 
             this.board.push(this.cards.pop())
         }
-        console.log(this.cards)
-        // console.log(this.board)    
     }
 
     // After a set is taken off the board, update the board by adding three more cards from the deck 
@@ -71,7 +69,6 @@ export default class Deck {
         for (let i = 0; i < 3; i++) { 
             this.board.push(this.cards.pop())
         } 
-        console.log(this.cards)
     }
 
     // Check if the 3 given cards form a set (all features different, all features same)
@@ -97,10 +94,6 @@ export default class Deck {
             matched = false; 
         }
         return matched;
-    }
-
-    findSet(c1, c2) { 
-        
     }
 }
 
