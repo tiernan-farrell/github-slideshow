@@ -1,80 +1,87 @@
+/*
+    Style rules: Color scheme is red, blue, grey, with hints of green. 
+    Use neon/bright shades of these colors for a casino feel to the card game.
+    
+
+*/
+
 #Board {
-    width: 0;
-    height: 0;
     background: wheat;
+    height: 0;
+    width: 0;
 }
 
 body {
-    background-image: url(./images/background2.jpg);
-    height: auto;
-    background-size: cover;
     background-attachment: fixed;
+    background-image: url(./images/background2.jpg);
+    background-size: cover;
+    height: auto;
 }
 
 img:hover {
-    width: 144px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1.5);
     height: 120px;
     margin: 2px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1.5);
+    width: 144px;
 }
 
 img {
-    width: 120px;
-    height: 100px;
-    cursor: pointer;
-    border: 2px solid blue;
-    margin: 10px;
-    animation-name: set;
     animation-duration: 2s;
+    animation-name: set;
     animation-play-state: paused;
+    border: 2px solid blue;
+    cursor: pointer;
+    height: 100px;
+    margin: 10px;
+    width: 120px;
 }
 
 @keyframes scoreSize {
     70% {
-       font-size: 26px;
-       background-color: rgba(83, 1, 1, 0.808);
+        background-color: rgba(83, 1, 1, 0.808);
+        font-size: 26px;
     }
 }
 
 h1 {
-    font-size: 4em;
-    font-family: 'Trebuchet MS';
-    font-weight: 900;
     color: white;
-    text-shadow: -1px 1px 6px red, 1px -1px 6px blue;
+    font-family: 'Trebuchet MS';
+    font-size: 4em;
+    font-weight: 900;
     text-align: center;
+    text-shadow: -1px 1px 6px red, 1px -1px 6px blue;
 }
 
 div {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 div.BoardBox {
-    height: 100%;
-    display: grid;
-    background: rgb(255, 0, 0) radial-gradient(blue, red);
-    width: 50%;
-    padding: 40px;
-    box-shadow: 0px 0px 10px white;
-    margin: 10px auto;
     align-self: center;
+    background: rgb(255, 0, 0) radial-gradient(blue, red);
+    box-shadow: 0px 0px 10px white;
+    display: grid;
+    height: 100%;
+    margin: 10px auto;
+    padding: 40px;
+    width: 50%;
 }
 
 div.Heading {
-    width: 100%;
-    height: 100px;
     background-image: url(./images/set_cards.png);
     height: auto;
+    height: 100px;
+    width: 100%;
 }
 
 ul {
-    font-size: 1.4em;
     color: black;
     display: list-item;
-    text-align: left;
+    font-size: 1.4em;
     padding-left: 30px;
+    text-align: left;
 }
 
 li {
@@ -87,39 +94,39 @@ p,
 p1,
 p2,
 p3 {
-    font-size: 1.5em;
-    font-family: 'Trebuchet MS';
-    color: rgb(201, 6, 6);
-    text-shadow: 0px 0px 4px rgb(0, 0, 0);
-    text-align: center;
-    display: inline-flex;
-    padding: 10px;
-    margin: 2px;
     border: 5px outset rgb(201, 6, 6);
-    box-shadow: 0px 0px 10px rgb(201, 6, 6);
     border-radius: 5px;
+    box-shadow: 0px 0px 10px rgb(201, 6, 6);
+    color: rgb(201, 6, 6);
+    display: inline-flex;
+    font-family: 'Trebuchet MS';
+    font-size: 1.5em;
+    margin: 2px;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 0px 0px 4px rgb(0, 0, 0);
 }
 
 p4 {
-    font-size: 1.5em;
-    font-family: 'Trebuchet MS';
     color: rgb(201, 6, 6);
-    text-shadow: 0px 0px 4px rgb(0, 0, 0);
-    text-align: right;
+    font-family: 'Trebuchet MS';
+    font-size: 1.5em;
     margin-left: 40px;
+    text-align: right;
+    text-shadow: 0px 0px 4px rgb(0, 0, 0);
 }
 
 button {
-    background-color: #a80303;
     color: rgb(190, 229, 248);
-    padding: 10px;
-    font-size: 16px;
-    border: none;
     cursor: pointer;
+    background-color: #a80303;
+    border: none;
     border-radius: 5px;
-
     box-shadow: 0 4px #111;
+    font-size: 16px;
+    padding: 10px;
 }
+
 button:hover {
     background-color: #810202;
 }
@@ -129,21 +136,19 @@ button:active {
 }
 
 .reportbtn {
-    box-shadow: 0px 0px 3px rgb(2, 0, 0);
     background-color: #a80303;
-    color: rgb(210, 235, 248);
-    padding: 15px;
-    font-size: 18px;
     border: none;
-    cursor: pointer;
     border-radius: 20px;
-    box-shadow: 0px 6px #111;
-    text-align: center;
+    box-shadow: 0px 0px 3px rgb(2, 0, 0);
+    color: rgb(210, 235, 248);
+    cursor: pointer;
+    font-size: 18px;
     outline: none;
+    padding: 15px;
+    text-align: center;
 }
 
 .reportbtn:active {
-    
     box-shadow: 0 4px #222;
     transform: translateY(4px);
 }
@@ -157,20 +162,20 @@ button:active {
 }
 
 .report {
+    display: inline-block;
     float: right;
     padding: 15px 50px 15px 10px;
     position: relative;
-    display: inline-block;
 }
 
 .report-content {
-    font-size: 20px;
-    display: none;
-    position: absolute;
     background-color: #f3d8d8;
+    box-shadow: 3px 10px 15px 8px rgba(0, 0, 0, 4);
+    display: none;
+    font-size: 20px;
     min-width: 135px;
     overflow: auto;
-    box-shadow: 3px 10px 15px 8px rgba(0, 0, 0, 4);
+    position: absolute;
     z-index: 1;
 }
 
@@ -179,18 +184,18 @@ button:active {
 }
 
 .hintbtn {
-    float: right;
-    padding: 12px 25px;
-    margin-top: 20px;
-    font-size: 20px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: rgb(0, 29, 43);
     background-color: #68ff63d2;
     border: none;
     border-radius: 20px;
     box-shadow: 0 6px #111;
+    color: rgb(0, 29, 43);
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    margin-top: 20px;
+    outline: none;
+    padding: 12px 25px;
+    text-align: center;
 }
 
 .hintbtn:hover {
@@ -207,9 +212,9 @@ button:active {
 }
 
 .Rules {
-    font-size: 1.2em;
-    font-family: 'Trebuchet MS';
     color: rgb(255, 255, 255);
-    text-shadow: 0px 0px 4px rgb(0, 0, 0);
+    font-family: 'Trebuchet MS';
+    font-size: 1.2em;
     text-align: left;
+    text-shadow: 0px 0px 4px rgb(0, 0, 0);
 }
