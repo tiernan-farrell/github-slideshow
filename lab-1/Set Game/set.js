@@ -9,7 +9,7 @@ canvas.width = 0
 const deck = new Deck()
 const p1 = new Player("p1")
 const cpu = new ComputerPlayer("cpu")
-const TIMESCALE = 10
+const TIMESCALE = 1
 
 var ctx = canvas.getContext("2d")
 var selected = []
@@ -47,7 +47,7 @@ addImagesEventListener("click", "img", e => {
                 score = "player1"
                 timeSetFound = getTime()
                 console.log("line 47 timeSetFound:", timeSetFound)
-            } else { 
+            } else {    
                 alert("Not a Set! Try again")
                 selected = []
                 setBorder()
@@ -65,6 +65,18 @@ function addImagesEventListener(type, selector, callback) {
 
 var intervalmove = setInterval(function computerMove() {
     var set = cpu.findSet(deck.board)
+
+     // First check for no sets and redeal 
+     if (set == -1) { 
+        while (set == -1) { 
+            deck.redeal()
+            selected = []
+            hints = []
+            set = cpu.findSet(deck.board)
+        } 
+        drawDeck(ctx)
+    }
+
 
     for(let j = 0; j < 2; j++){
         hint(set[j])
@@ -104,40 +116,29 @@ var intervalmove = setInterval(function computerMove() {
         
     }
 
-    // First check for no sets and redeal 
-    if (set == -1) { 
-        selected = []
-        deck.redeal()
-        drawDeck(ctx)
-        alert(
-            "REDEAL, NO POSSIBLE SETS"
-        )
-        hints = []
-        
-    } else { 
-        console.log(timeSetFound)
-        // Check for computer move 
+   
 
-        var time = getTime()
-        var timeGoal = cpu.level*TIMESCALE+timeSetFound
-        if(time > timeGoal) { 
-            // update timeSetFound 
-            timeSetFound += cpu.level*TIMESCALE
-            console.log("line 123 timeSetFound:", timeSetFound)
-            //make move
-            selected = []
-            for (let i = 0; i < 3; i++) { 
-                const card = getCardById(set[i])
-                selected.push(card)
-            }
-            //console.log(deck.board)
-            setFound(cpu)
-            //console.log(deck.board)
-            setHistory = document.getElementById("Timer").innerHTML
-            score = "cpu"
-        }   
-        
-    }
+    // Check for computer move 
+
+    var time = getTime()
+    console.log(cpu.level)
+    var timeGoal = cpu.level*TIMESCALE+timeSetFound
+    if(time > timeGoal) { 
+        // update timeSetFound 
+        timeSetFound += cpu.level*TIMESCALE
+        console.log("line 123 timeSetFound:", timeSetFound)
+        //make move
+        selected = []
+        for (let i = 0; i < 3; i++) { 
+            const card = getCardById(set[i])
+            selected.push(card)
+        }
+        //console.log(deck.board)
+        setFound(cpu)
+        //console.log(deck.board)
+        setHistory = document.getElementById("Timer").innerHTML
+        score = "cpu"
+    }   
 
 }, 1000)
    
@@ -290,8 +291,14 @@ function endGame(name){
 var levels = document.getElementsByClassName("level")
 for (let i = 0; i < levels.length; i++) { 
     levels[i].onclick = (e) => { 
-        let level = parseInt(e.target.innerHTML.split(" ")[1])
-        cpu.level = level
+        let level = e.target.innerHTML
+        if(level === "Easy") { 
+            cpu.level = 3
+        } else if (level === "Medium") { 
+            cpu.level = 2
+        } else { 
+            cpu.level = 1
+        }
     }
 }
 
