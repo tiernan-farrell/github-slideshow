@@ -7,8 +7,8 @@ canvas.height = 0
 canvas.width = 0
 // deck holds an array of size 81. each hand has the 4 features
 const deck = new Deck()
-const p1 = new Player("p1")
-const cpu = new ComputerPlayer("cpu")
+const p1 = new Player("Player 1")
+const cpu = new ComputerPlayer("Player 2")
 const TIMESCALE = 1
 
 var ctx = canvas.getContext("2d")
@@ -68,6 +68,9 @@ var intervalmove = setInterval(function computerMove() {
 
      // First check for no sets and redeal 
      if (set == -1) { 
+         if (deck.cards.length == 0) { 
+             endGame(checkWinner(p1, cpu))
+         }
         while (set == -1) { 
             deck.redeal()
             selected = []
@@ -88,20 +91,22 @@ var intervalmove = setInterval(function computerMove() {
                 var cardImg = document.getElementsByClassName("row")
                 for (let i = 0; i < 4; i++){
                     for (let j = 0; j < 3; j++){
-                    let imgTag = cardImg[i].children[j].src
+                        if (cardImg[i].children[j].src) { 
+                            let imgTag = cardImg[i].children[j].src
 
-                    let split = imgTag.split("/")
-                    let imgSrc = "./images/" + split[4]
- 
-                        if(imgSrc == card.img){
-                          if(hints.length <= 2){
-                            hints.push(cardImg[i].children[j])
-                          }
-                          else{
-                              hints = []
-                              hints.push(cardImg[i].children[j])
-                          }
-                            
+                            let split = imgTag.split("/")
+                            let imgSrc = "./images/" + split[4]
+        
+                            if(imgSrc == card.img){
+                            if(hints.length <= 2){
+                                hints.push(cardImg[i].children[j])
+                            }
+                            else{
+                                hints = []
+                                hints.push(cardImg[i].children[j])
+                            }
+                                
+                            }
                         }
                     }
                 }   
@@ -155,7 +160,7 @@ function wait(secs, p) {
         // Change all images boreders back to unselected
         setBorder()
         // replace cards with new deal 
-        deck.updateBoard()
+        deck.updateBoard() 
         // Increase score for players
         updateInfo(p)
         drawDeck(ctx) }, secs*1000)
@@ -199,11 +204,16 @@ function drawDeck(ctx) {
     let i = 0;
     for (let row = 0; row < 4; row++) { 
         for (let col = 0; col < 3; col++) {
-            deck.board[i].boardId = "r" + row.toString() + "c" + col.toString()
-            const img = document.getElementById(deck.board[i].boardId)
-            img.src = deck.board[i].img 
-            ctx.drawImage(img,0, 0)
-            i++
+            if (i < deck.board.length) {
+                deck.board[i].boardId = "r" + row.toString() + "c" + col.toString()
+                const img = document.getElementById(deck.board[i].boardId)
+                img.src = deck.board[i].img 
+                ctx.drawImage(img,0, 0)
+                i++
+            } else {
+                var img = document.getElementById( "r" + row.toString() + "c" + col.toString())
+                img.parentNode.removeChild(img)
+            }
         }
     }
 
@@ -280,7 +290,10 @@ function getCardById(id) {
 //pass in the player.name of the winner
 function endGame(name){
     //window.open("endGamePopup.html", "popup", "width=100,height=100")
-    alert("Game over. Winner is "+ name + ". Refresh the page to play again!")
+    document.location.reload(true)
+  
+    alert("Game over. Winner is "+ name + ". Refresh the page to play again!") 
+
 }
 
 

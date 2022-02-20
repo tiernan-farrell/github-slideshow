@@ -30,9 +30,12 @@ export default class ComputerPlayer{
     // if it is found and -1 otherwise 
     checkBoard(board, id) { 
         for(let i = 0; i < board.length; i++) { 
-            if (board[i].id === id) { 
-                return i
+            if (board[i]) { 
+                if (board[i].id === id) { 
+                    return i
+                }
             }
+            
         }
         return -1
     }

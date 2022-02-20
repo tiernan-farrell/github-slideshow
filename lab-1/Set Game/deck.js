@@ -58,7 +58,7 @@ export default class Deck {
     }
     
     // Deal the board by adding 12 cards from the deck that should be shuffled before this is called
-    deal() { 
+    deal() {
         for(let i = 0; i < 12; i++) { 
             this.board.push(this.cards.pop())
         }
@@ -66,8 +66,10 @@ export default class Deck {
 
     // After a set is taken off the board, update the board by adding three more cards from the deck 
     updateBoard() { 
-        for (let i = 0; i < 3; i++) { 
-            this.board.push(this.cards.pop())
+        if (this.cards.length > 0) { 
+            for (let i = 0; i < 3; i++) { 
+                this.board.push(this.cards.pop())
+            } 
         } 
     }
 
