@@ -3,25 +3,27 @@ const SHAPE = ['diamond', 'oval', 'wave']
 const COLOR = ['red', 'green', 'blue']
 const SHADING = ['solid', 'open','striped']
 
+
+//Keeps track of and displays time
 var start = new Date().getTime()
 var stop = null
 var timer = document.getElementById("Timer")
 var update_timer = setInterval(function() {
     if (stop === null)  {
         var current = new Date().getTime()
-        var elapsed_time = current - start
-        var seconds = Math.floor(elapsed_time / 1000)
-        var minutes = Math.floor(seconds / 60)
-
-        var display_min = (minutes % 60).toString().padStart(2, '0')
+        var elapsed_time = current - start  //compute time elapsed
+        var seconds = Math.floor(elapsed_time / 1000) //use elapsed_time to compute seconds
+        var minutes = Math.floor(seconds / 60)  //use elpased_time to compute minutes
+        
+        var display_min = (minutes % 60).toString().padStart(2, '0')  //convert numerical value to string
         var display_sec = (seconds % 60).toString().padStart(2, '0')
         
-        var time =  display_min + ":" + display_sec
+        var time =  display_min + ":" + display_sec //concatenate strings to display
         timer.innerHTML = time
     } else {
-        //add style, location, color choices
+        
         timer.innerHTML = stop
-}
+    }
 }, 1000)
 
 export default class Deck {
@@ -29,7 +31,8 @@ export default class Deck {
         this.cards = cards
         this.board = []
     }
-
+    
+    //Gets the amount of cards
     get numberOfCards(){
         return this.cards.length
     }
@@ -49,7 +52,8 @@ export default class Deck {
     release(card) { 
         this.board = this.board.filter(ele => ele!=card)
     }
-
+    
+    //Redeals the cards
     redeal() { 
         this.cards = this.cards.concat(this.board)
         this.board =[]
@@ -99,7 +103,7 @@ export default class Deck {
     }
 }
 
-// constructor for the Card class. Used to creat each card object last line in the freshDeck function
+// constructor for the Card class. Used to create each card object last line in the freshDeck function
 class Card {
     constructor(number, shape, color, shading){
         this.number = number
@@ -113,7 +117,7 @@ class Card {
 }
 
 
-// creat an array of length 81, each with 4 different features. 2d array of 81 by 4. Not shuffled
+// create an array of length 81, each with 4 different features. 2d array of 81 by 4. Not shuffled
 function freshDeck(){
     return NUMBER.flatMap(number => {
         return SHAPE.flatMap(shape => {
