@@ -10,7 +10,7 @@ const deck = new Deck()
 // Initialize players and declare timescale for difficulty 
 const p1 = new Player("Player 1")
 const cpu = new ComputerPlayer("Player 2")
-const TIMESCALE = 20
+const TIMESCALE = 30
 
 // Get the canvas context for drawing and initialize necessary global variables 
 var ctx = canvas.getContext("2d")
