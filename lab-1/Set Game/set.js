@@ -7,10 +7,12 @@ canvas.height = 0
 canvas.width = 0
 // deck holds an array of size 81. each hand has the 4 features
 const deck = new Deck()
+// Initialize players and declare timescale for difficulty 
 const p1 = new Player("Player 1")
 const cpu = new ComputerPlayer("Player 2")
-const TIMESCALE = 15
+const TIMESCALE = 20
 
+// Get the canvas context for drawing and initialize necessary global variables 
 var ctx = canvas.getContext("2d")
 var selected = []
 var timeSetFound = 0
@@ -18,36 +20,40 @@ var setHistory
 var hints = []
 var score = ""
 
+// Suffle the deck and deal 
 deck.shuffle()
 deck.deal();
 setBorder()
+
+// Adds click functionality to images 
 addImagesEventListener("click", "img", e => { 
     const card = findCard(deck.board, e.target)
     // If the card needs to be removed
-    console.log(selected)
     if (selected.includes(card))  { 
+        // remove card and set border back 
         selected = selected.filter(ele => ele!=card)
         const img = e.target
-        //console.log(selected)
         img.style.border = "2px solid black"
-        // If the card needs to be added 
     } else { 
+        // If it is not full 
         if (selected.length < 3) { 
             e.target.style.border = "5px solid green"
             // add card 
             selected.push(card)
-            console.log(selected)
         } 
         // Check for set 
         if (selected.length === 3) { 
             if (deck.isSet(selected[0], selected[1], selected[2])) { 
+                // clear hints call setFound function to execute set 
                 hints = []
                 setFound(p1)
+                // Take note of time and player and store 
                 setHistory = document.getElementById("Timer").innerHTML
                 score = "player1"
+                // Get time of set 
                 timeSetFound = getTime()
-                console.log("line 47 timeSetFound:", timeSetFound)
             } else {    
+                // Display that it is not a set and reset the selceted array 
                 alert("Not a Set! Try again")
                 selected = []
                 setBorder()
@@ -57,34 +63,41 @@ addImagesEventListener("click", "img", e => {
     }   
 })
 
+// This adds the event listener 
 function addImagesEventListener(type, selector, callback) { 
     document.addEventListener(type, e => { 
         if(e.target.matches(selector)) callback(e)
     })
 }
 
-var intervalmove = setInterval(function computerMove() {
+// This is the interval that will be checking sets and making moves
+setInterval(function computerMove() {
+    // Find the set 
     var set = cpu.findSet(deck.board)
 
      // First check for no sets and redeal 
      if (set == -1) { 
+         // If game is over 
          if (deck.cards.length == 0) { 
              endGame(checkWinner(p1, cpu))
          }
+         // continue redealing until a set is possible 
         while (set == -1) { 
             deck.redeal()
             selected = []
             hints = []
             set = cpu.findSet(deck.board)
         } 
+        // draw the redeal 
         drawDeck(ctx)
     }
 
-
+    // Set hints
     for(let j = 0; j < 2; j++){
         hint(set[j])
     }
 
+    // adds hints to the hint array 
     function hint (target){
         deck.board.forEach (function(card){
             if (target == card.id){
@@ -114,6 +127,7 @@ var intervalmove = setInterval(function computerMove() {
         })
     }
 
+    // changes hint border
     document.getElementById("hint").onclick = function (){
         hints.forEach(function(hint){
             hint.style.border = "6px solid red"
@@ -123,12 +137,13 @@ var intervalmove = setInterval(function computerMove() {
 
    
 
-    // Check for computer move 
+    // Check for computer move
+    // MATH: level*TIMESCALE + timeSetFound -> this is the time calculation for computer to make move 
+    // on easy the timescale gets multiplied by 3 and on medium by 2. the timeSetFound is updated after this 
+    // move and when user finds a set. This ensures that a move will be made within the next level*TIMESCALE. 
 
     var time = getTime()
-    console.log(cpu.level)
     var timeGoal = cpu.level*TIMESCALE+timeSetFound
-    console.log(timeGoal)
     if(time > timeGoal) { 
         // update timeSetFound 
         timeSetFound += cpu.level*TIMESCALE
@@ -166,18 +181,23 @@ function wait(secs, p) {
         drawDeck(ctx) }, secs*1000)
 }
 
+
+
+// Called when a set is found, does animation calls wait 
 function setFound(p) { 
     for(let j = 0; j < selected.length; j++) {
         var card = document.getElementById(selected[j].boardId)
         if (card) card.style.animationPlayState= "running"
     }
-    wait(2, p)
+    wait(1, p)
     for(let j = 0; j < selected.length; j++) {
         var card = document.getElementById(selected[j].boardId)
         if (card) card.style.animationPlayState= "paused"
     }
 }
 
+
+// Updates score info 
 function updateInfo(p) { 
     var p1Score = document.getElementById("p1Score")
     var p2Score = document.getElementById("p2Score")
@@ -200,13 +220,17 @@ function updateInfo(p) {
     cardsLeft.innerHTML = "Cards left: " + deck.cards.length
 }
 
+
+// Displays the images of deck.board
 function drawDeck(ctx) { 
     let i = 0;
     for (let row = 0; row < 4; row++) { 
         for (let col = 0; col < 3; col++) {
+            // Check if the card exists on board
             if (i < deck.board.length) {
                 deck.board[i].boardId = "r" + row.toString() + "c" + col.toString()
                 const img = document.getElementById(deck.board[i].boardId)
+                // set image and draw
                 img.src = deck.board[i].img 
                 ctx.drawImage(img,0, 0)
                 i++
@@ -233,6 +257,7 @@ function getTime () {
 }
 
 
+// Sets border for images
 function setBorder () { 
     const img = document.getElementsByTagName("img")
         for (let j = 0; j <img.length; j++)  { 
@@ -240,32 +265,19 @@ function setBorder () {
         }
 }
 
+
+// Finds the card from the img src
 function findCard(cards, img) { 
 
     for(let i = 0; i < deck.cards.length; i++) { 
         let split = img.src.split("/")
-        console.log(split)
         let name = "./images/" + split[4]
-        console.log(name)
         if (cards[i].img === name) { 
             return cards[i]
         }
     }
 }
 
-//function to show card count, will need to be called everytime card count is changed
-//will increment player score 
-function updateScoreBoard(deck){
-    var cardCount = document.getElementById("numCards");
-    cardCount.innerHTML = "Cards left in deck: " + deck.cards.length;
-
-    var p1 = document.getElementById("p1Score");
-    p1.innerHTML = "Player 1 score: " + 1;
-
-    var p2 = document.getElementById("p2Score");
-    p2.innerHTML = "Player 2 score: " + 1;
-
-}
 
 //function to check the winner of the game
 //call to pass into endGame
