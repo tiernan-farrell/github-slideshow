@@ -5,7 +5,8 @@ export default class ComputerPlayer{
         this.score = 0
         this.level = level
     }
-
+    
+    //Increments the score
     incrementScore() { 
         this.score += 1
     }
@@ -39,7 +40,9 @@ export default class ComputerPlayer{
         }
         return -1
     }
+    
 
+    //Finds a set on the board if one exists
     findSet(board) { 
         for (let i = 0; i < board.length - 1; i ++) { 
             var card1 = board[i]
