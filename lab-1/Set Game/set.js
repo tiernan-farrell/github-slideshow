@@ -9,7 +9,7 @@ canvas.width = 0
 const deck = new Deck()
 const p1 = new Player("Player 1")
 const cpu = new ComputerPlayer("Player 2")
-const TIMESCALE = 1
+const TIMESCALE = 15
 
 var ctx = canvas.getContext("2d")
 var selected = []
