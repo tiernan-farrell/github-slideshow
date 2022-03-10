@@ -1,6 +1,6 @@
 require 'httparty'
 require 'byebug'
-
+require 'sqlite3'
 
 def scraper 
     url = "https://content.osu.edu/v2/classes/search?q=cse&campus=col&p=1&term=1222"
@@ -12,10 +12,25 @@ def scraper
     pd.each {|single| courses << single['course']
         sections << single['sections']
     }
-    puts courses
-    puts sections 
-    byebug
+    
+    return courses, sections
+    
     
 end 
 
-scraper
+courses, sections = scraper 
+
+db = SQLite3::Database.new('graderManager.db') 
+db.execute "CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, userType TEXT)"
+db.execute "CREATE TABLE IF NOT EXISTS courses(courseNo INT, title TEXT, description TEXT)"
+db.execute "CREATE TABLE IF NOT EXISTS sections(sectionNo TEXT, courseNo INT)"
+
+courses.each {|course| 
+    db.execute "INSERT INTO courses (courseNo, title, description) VALUES (?, ?, ?)", course['catalogNumber'], course['title'], course['description']
+}
+
+sections.each {|section| 
+    section.each {|s|
+        db.execute "INSERT INTO sections (sectionNo, courseNo) VALUES (?, ?)", s['section'], s['catalogNumber']
+    }
+}
