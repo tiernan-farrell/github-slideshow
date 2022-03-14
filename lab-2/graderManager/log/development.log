@@ -1,0 +1,477 @@
+Started GET "/" for 127.0.0.1 at 2022-03-14 13:51:08 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 431)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+Error: Cannot find module '@rails/webpacker'
+Require stack:
+- /home/alex/myl7/lab-2/graderManager/config/webpack/environment.js
+- /home/alex/myl7/lab-2/graderManager/config/webpack/development.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack/bin/webpack.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/config/webpack/environment.js:1:87)
+    at Module._compile (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/config/webpack/development.js:3:21)
+    at Module._compile (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at WEBPACK_OPTIONS (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+    at Array.forEach (<anonymous>)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/home/alex/myl7/lab-2/graderManager/node_modules/yargs/yargs.js:576:18)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:49:8
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (node:internal/modules/cjs/loader:1097:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/alex/myl7/lab-2/graderManager/config/webpack/environment.js',
+    '/home/alex/myl7/lab-2/graderManager/config/webpack/development.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack/bin/webpack.js'
+  ]
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 2558.5ms | Allocations: 15910)
+Completed 500 Internal Server Error in 2574ms (ActiveRecord: 0.0ms | Allocations: 19869)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/home" for 127.0.0.1 at 2022-03-14 13:51:26 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 38)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:93
+				throw err;
+				^
+
+Error: Cannot find module '@rails/webpacker'
+Require stack:
+- /home/alex/myl7/lab-2/graderManager/config/webpack/environment.js
+- /home/alex/myl7/lab-2/graderManager/config/webpack/development.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js
+- /home/alex/myl7/lab-2/graderManager/node_modules/webpack/bin/webpack.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/config/webpack/environment.js:1:87)
+    at Module._compile (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/config/webpack/development.js:3:21)
+    at Module._compile (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:192:30)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:999:19)
+    at require (/home/alex/myl7/lab-2/graderManager/node_modules/v8-compile-cache/v8-compile-cache.js:159:20)
+    at WEBPACK_OPTIONS (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:114:13)
+    at requireConfig (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:116:6)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:123:17
+    at Array.forEach (<anonymous>)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js:121:15)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:71:45
+    at Object.parse (/home/alex/myl7/lab-2/graderManager/node_modules/yargs/yargs.js:576:18)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:49:8
+    at Object.<anonymous> (/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js:366:3)
+    at Module._compile (node:internal/modules/cjs/loader:1097:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1151:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/alex/myl7/lab-2/graderManager/config/webpack/environment.js',
+    '/home/alex/myl7/lab-2/graderManager/config/webpack/development.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/utils/convert-argv.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack-cli/bin/cli.js',
+    '/home/alex/myl7/lab-2/graderManager/node_modules/webpack/bin/webpack.js'
+  ]
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 1868.7ms | Allocations: 4384)
+Completed 500 Internal Server Error in 1869ms (ActiveRecord: 0.0ms | Allocations: 4760)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/" for 127.0.0.1 at 2022-03-14 13:55:29 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 326)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+node:internal/crypto/hash:67
+  this[kHandle] = new _Hash(algorithm, xofLen);
+                  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:135:10)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at context.callback (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/babel-loader/lib/index.js:59:71 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 4100.1ms | Allocations: 7664)
+Completed 500 Internal Server Error in 4125ms (ActiveRecord: 0.0ms | Allocations: 10580)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/home" for 127.0.0.1 at 2022-03-14 13:55:41 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 38)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+node:internal/crypto/hash:67
+  this[kHandle] = new _Hash(algorithm, xofLen);
+                  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:135:10)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at context.callback (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/babel-loader/lib/index.js:59:71 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 1588.9ms | Allocations: 4369)
+Completed 500 Internal Server Error in 1591ms (ActiveRecord: 0.0ms | Allocations: 4745)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/home" for 127.0.0.1 at 2022-03-14 13:57:17 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 326)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+node:internal/crypto/hash:67
+  this[kHandle] = new _Hash(algorithm, xofLen);
+                  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:135:10)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at context.callback (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/babel-loader/lib/index.js:59:71 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 1744.5ms | Allocations: 7661)
+Completed 500 Internal Server Error in 1777ms (ActiveRecord: 0.0ms | Allocations: 10578)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <!<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/" for 127.0.0.1 at 2022-03-14 13:57:31 -0400
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 38)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+node:internal/crypto/hash:67
+  this[kHandle] = new _Hash(algorithm, xofLen);
+                  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:135:10)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at context.callback (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/babel-loader/lib/index.js:59:71 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 1793.6ms | Allocations: 4370)
+Completed 500 Internal Server Error in 1794ms (ActiveRecord: 0.0ms | Allocations: 4746)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <!<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/" for 127.0.0.1 at 2022-03-14 13:58:05 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 326)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+node:internal/crypto/hash:67
+  this[kHandle] = new _Hash(algorithm, xofLen);
+                  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:135:10)
+    at module.exports (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:417:16)
+    at handleParseError (/home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:471:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:503:5
+    at /home/alex/myl7/lab-2/graderManager/node_modules/webpack/lib/NormalModule.js:358:12
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at context.callback (/home/alex/myl7/lab-2/graderManager/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /home/alex/myl7/lab-2/graderManager/node_modules/babel-loader/lib/index.js:59:71 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v17.6.0
+
+  Rendered layout layouts/application.html.erb (Duration: 1766.1ms | Allocations: 7658)
+Completed 500 Internal Server Error in 1783ms (ActiveRecord: 0.0ms | Allocations: 10574)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /home/alex/myl7/lab-2/graderManager/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     7:     <%= csp_meta_tag %>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:     <!<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>>
+    11:   </head>
+    12: 
+    13:   <body>
+  
+app/views/layouts/application.html.erb:10
+Started GET "/" for 127.0.0.1 at 2022-03-14 13:58:39 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 4358)
+Completed 200 OK in 20ms (Views: 14.4ms | ActiveRecord: 0.0ms | Allocations: 7328)
+
+
+Started GET "/" for 127.0.0.1 at 2022-03-14 14:02:58 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 331)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 4328)
+Completed 200 OK in 20ms (Views: 6.6ms | ActiveRecord: 0.0ms | Allocations: 7413)
+
+
