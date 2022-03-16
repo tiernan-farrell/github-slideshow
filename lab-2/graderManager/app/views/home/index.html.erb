@@ -2,7 +2,28 @@
 
 <p>This view is app/views/home/index.html.erb</p>
 
-<button type="button">login</button>
-<button type="button">sign up</button>
-<button type="button">browse catalog</button>
-<button type="button">log out</button>
+
+<% if user_signed_in? %>
+
+  <button type="button">browse catalog</button>
+
+  <button type="button">
+    <%= link_to "Edit profile", edit_user_registration_path %>
+  </button>
+
+  <button type="button">
+   <%= link_to "sign out", destroy_user_session_path, method: :get %>
+  </button>
+
+<% else %>
+ 
+  <button type="button">
+   <%= link_to "sign in", user_session_path %>
+  </button>
+
+  <button type="button">
+   <%= link_to "sign up", new_user_registration_path %>
+  </button>
+
+<% end %>
+
