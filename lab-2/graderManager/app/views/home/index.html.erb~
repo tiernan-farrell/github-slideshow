@@ -1,0 +1,29 @@
+<h1>This is the homepage for our grader manager</h1>
+
+<p>This view is app/views/home/index.html.erb</p>
+
+
+<% if user_singed_in? %>
+
+  <button type="button">browse catalog</button>
+
+  <button type="button">
+    <%= link_to "Edit profile", edit_user_registration_path %>
+  </button>
+
+  <button type="button">
+   <%= link_to "sign out", destroy_user_session_path, method: :get %>
+  </button>
+
+<% else %>
+ 
+  <button type="button">
+   <%= link_to "sign in", user_session_path %>
+  </button>
+
+  <button type="button">
+   <%= link_to "sign up", new_user_registration_path %>
+  </button>
+
+<% end %>
+
