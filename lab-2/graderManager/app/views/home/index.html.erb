@@ -7,9 +7,8 @@
 
 <% if user_signed_in? %>
 
-  <button type="button">browse catalog
-
-  </button>
+  
+    <%= link_to "Browse Catalog", catalog_path, class: "btn btn-lg btn-primary" %>
 
     <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-lg btn-primary" %>
 
