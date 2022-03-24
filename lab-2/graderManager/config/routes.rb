@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   
   get "/home", to: "home#index"
   get "/catalog", to: "catalog#index"
- 
 end

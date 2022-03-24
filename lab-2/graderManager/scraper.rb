@@ -18,19 +18,16 @@ def scraper
     
 end 
 
-courses, sections = scraper 
+c, s = scraper 
 
-db = SQLite3::Database.new('graderManager.db') 
-db.execute "CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, userType TEXT)"
-db.execute "CREATE TABLE IF NOT EXISTS courses(courseNo INT, title TEXT, description TEXT)"
-db.execute "CREATE TABLE IF NOT EXISTS sections(sectionNo TEXT, courseNo INT)"
+db = SQLite3::Database.new('./db/development.sqlite3') 
 
-courses.each {|course| 
+c.each {|course| 
     db.execute "INSERT INTO courses (courseNo, title, description) VALUES (?, ?, ?)", course['catalogNumber'], course['title'], course['description']
 }
 
-sections.each {|section| 
-    section.each {|s|
-        db.execute "INSERT INTO sections (sectionNo, courseNo) VALUES (?, ?)", s['section'], s['catalogNumber']
+s.each {|section| 
+    section.each {|ss|
+        db.execute "INSERT INTO sections (sectionNo, courseNo) VALUES (?, ?)", ss['section'], ss['catalogNumber']
     }
 }
